@@ -354,24 +354,61 @@
 <div>
 <h5 class="text-xs tracking-[0.2em] uppercase text-neutral-400 mb-6">Nossas Unidades</h5>
 <div class="flex flex-col gap-5 mb-6">
-    <div>
-        <h6 class="text-primary text-[10px] tracking-widest font-bold mb-1 uppercase">Centro</h6>
-        <address class="not-italic text-on-surface-variant text-sm leading-relaxed">
+    <button type="button" onclick="changeLocation('centro')" id="btn-centro" class="text-left group cursor-pointer border-l-2 border-primary pl-4 transition-all w-full opacity-100">
+        <h6 class="text-primary text-[10px] tracking-widest font-bold mb-1 uppercase text-amber-500">Centro</h6>
+        <address class="not-italic text-on-surface text-sm leading-relaxed text-amber-100">
             R. Luiz Abry, 1393<br/>
             Pomerode - SC, 89107-000
         </address>
-    </div>
-    <div>
+    </button>
+    <button type="button" onclick="changeLocation('gustavo')" id="btn-gustavo" class="text-left group cursor-pointer border-l-2 border-transparent pl-4 transition-all w-full opacity-50 hover:opacity-80">
         <h6 class="text-primary text-[10px] tracking-widest font-bold mb-1 uppercase">Gustavo Zastrow</h6>
         <address class="not-italic text-on-surface-variant text-sm leading-relaxed">
             Rua Gustavo Zastrow, 90<br/>
             Pomerode - SC, 89107-000
         </address>
-    </div>
+    </button>
 </div>
-<div class="w-full h-48 bg-surface-container-low overflow-hidden">
-<img class="w-full h-full object-cover grayscale opacity-50" data-alt="Stylized dark map showing the location of Rua Gustavo Zastrow in Pomerode" data-location="Pomerode, Brazil" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHAZcylrWArZdBETPpKN1BACjdL7eRLi5Q_gc5YlMRpSE5GY9PTW9BnNwiIhLmkY9joaecudBtBuQniAqCV82HQtDqf2TF-YWd4HZbA-OSM-cFSS6L65_mvMmvTMDUZzew-nuDLWW3bp1kyMjGT6X8ljXcXjAY_mZxDRhIvsiJyX4exP7UmNuuAKwwq37PZ5p4RmauR_cLrDYEcbpxDy3Y4-UdAuGqpYyxHLVa1OwrcI6PHci7hBCI4LG7-brty0QjE5gt0cCHlds"/>
+<div class="w-full h-48 bg-surface-container-low overflow-hidden relative group">
+    <iframe id="map-iframe" class="w-full h-full grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500" loading="lazy" src="https://www.google.com/maps?q=R.+Luiz+Abry,+1393+-+Centro,+Pomerode+-+SC,+89107-000&output=embed"></iframe>
 </div>
+<script>
+    function changeLocation(loc) {
+        const btnCentro = document.getElementById('btn-centro');
+        const btnGustavo = document.getElementById('btn-gustavo');
+        const mapIframe = document.getElementById('map-iframe');
+
+        if (loc === 'centro') {
+            btnCentro.classList.add('border-primary', 'opacity-100');
+            btnCentro.classList.remove('border-transparent', 'opacity-50', 'hover:opacity-80');
+            btnCentro.querySelector('h6').classList.add('text-amber-500');
+            btnCentro.querySelector('address').classList.add('text-amber-100');
+            btnCentro.querySelector('address').classList.remove('text-on-surface-variant');
+            
+            btnGustavo.classList.add('border-transparent', 'opacity-50', 'hover:opacity-80');
+            btnGustavo.classList.remove('border-primary', 'opacity-100');
+            btnGustavo.querySelector('h6').classList.remove('text-amber-500');
+            btnGustavo.querySelector('address').classList.remove('text-amber-100');
+            btnGustavo.querySelector('address').classList.add('text-on-surface-variant');
+
+            mapIframe.src = "https://www.google.com/maps?q=R.+Luiz+Abry,+1393+-+Centro,+Pomerode+-+SC,+89107-000&output=embed";
+        } else {
+            btnGustavo.classList.add('border-primary', 'opacity-100');
+            btnGustavo.classList.remove('border-transparent', 'opacity-50', 'hover:opacity-80');
+            btnGustavo.querySelector('h6').classList.add('text-amber-500');
+            btnGustavo.querySelector('address').classList.add('text-amber-100');
+            btnGustavo.querySelector('address').classList.remove('text-on-surface-variant');
+            
+            btnCentro.classList.add('border-transparent', 'opacity-50', 'hover:opacity-80');
+            btnCentro.classList.remove('border-primary', 'opacity-100');
+            btnCentro.querySelector('h6').classList.remove('text-amber-500');
+            btnCentro.querySelector('address').classList.remove('text-amber-100');
+            btnCentro.querySelector('address').classList.add('text-on-surface-variant');
+
+            mapIframe.src = "https://www.google.com/maps?q=Rua+Gustavo+Zastrow,+90,+Pomerode+-+SC,+89107-000&output=embed";
+        }
+    }
+</script>
 </div>
 <div>
 <h5 class="text-xs tracking-[0.2em] uppercase text-neutral-400 mb-8">Horários</h5>
